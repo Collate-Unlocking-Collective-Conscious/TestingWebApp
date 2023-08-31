@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
-import { useCallback } from "react";
+import { useCallback , useRef} from "react";
 import { TextField } from "@mui/material";
+import {sendTextInput} from "./components/input"
 
 const FrameComponent: NextPage = () => {
   const onFrameTextareaClick = useCallback(() => {
@@ -9,6 +10,17 @@ const FrameComponent: NextPage = () => {
       anchor.scrollIntoView({ block: "start", behavior: "smooth" });
     }
   }, []);
+
+  const valueRef = useRef('');
+  let inputValue: string = "GAlle";
+  const sendValue = (e : React.KeyboardEvent<HTMLDivElement>) => {
+    
+      if(e.key === 'Enter'){
+        inputValue= valueRef.current.value; // to display <p>...</p> below text field
+        console.log(inputValue);
+        sendTextInput(inputValue);
+      }
+  }
 
   return (
     <div className="relative bg-khaki w-full h-[1083px] overflow-hidden text-left text-[64px] text-black font-inter lg:w-full lg:h-full">
@@ -35,6 +47,8 @@ const FrameComponent: NextPage = () => {
         placeholder="Placeholder"
         size="medium"
         margin="none"
+        inputRef={valueRef}
+        onKeyUp={sendValue}
       />
       <h5 className="m-0 absolute top-[0px] left-[76px] text-[inherit] font-normal font-inherit flex items-center w-[1302px] h-[397px] lg:w-full">
         Input Thoughts about Collective Conscious!

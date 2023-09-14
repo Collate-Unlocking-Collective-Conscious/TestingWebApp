@@ -1,7 +1,27 @@
 import type { NextPage } from "next";
 import { useCallback , useRef} from "react";
-import { TextField } from "@mui/material";
-import {sendTextInput} from "./components/input"
+import { Button, TextField } from "@mui/material";
+import {sendTextInput} from "./components/input";
+
+//import SendIcon from '@mui/icons-material/Send';
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------
+
+var GeneratedText = ''
+const myInit = {
+  method: "GET",
+ 
+};
+async function GeneratorHandler (res:any) {
+  res = await fetch('http://localhost:3000/api/gptSummary', myInit)
+
+  GeneratedText = res.body
+ }
+
+
 
 const FrameComponent: NextPage = () => {
   const onFrameTextareaClick = useCallback(() => {
@@ -23,22 +43,12 @@ const FrameComponent: NextPage = () => {
   }
 
   return (
-    <div className="relative bg-khaki w-full h-[1083px] overflow-hidden text-left text-[64px] text-black font-inter lg:w-full lg:h-full">
+    <div className="relative bg-khaki w-full overflow-hidden text-left text-[64px] text-black font-inter lg:w-full lg:h-full p-10">
+      <h5 className="m-0  text-[inherit] font-normal font-inherit flex items-center w-[1302px] h-[397px] lg:w-full">
+        Input Thoughts about Collective Conscious!
+      </h5>
       <TextField
-        className="absolute top-[716px] left-[0px] cursor-pointer"
-        color="primary"
-        variant="outlined"
-        multiline
-        rows={16}
-        label="AI output summary"
-        placeholder="Textarea placeholder"
-        margin="none"
-        fullWidth
-        data-scroll-to="frameTextarea"
-        onClick={onFrameTextareaClick}
-      />
-      <TextField
-        className="[border:none] bg-[transparent] absolute top-[469px] left-[0px]"
+        className="[border:none] bg-[transparent] "
         fullWidth
         color="primary"
         variant="outlined"
@@ -50,9 +60,25 @@ const FrameComponent: NextPage = () => {
         inputRef={valueRef}
         onKeyUp={sendValue}
       />
-      <h5 className="m-0 absolute top-[0px] left-[76px] text-[inherit] font-normal font-inherit flex items-center w-[1302px] h-[397px] lg:w-full">
-        Input Thoughts about Collective Conscious!
-      </h5>
+      <section><Button variant="contained" //endIcon={<SendIcon />}
+      fullWidth
+        className="justify-center box-border p-10"
+        onClick={GeneratorHandler} //GET function here
+        >Generate Output</Button></section>
+      
+      <TextField
+        className=" cursor-pointer m-5"
+        color="primary"
+        variant="outlined"
+        multiline
+        rows={12}
+        label="AI output summary"
+        placeholder="This is a place holder text"
+        margin="none"
+        fullWidth
+        data-scroll-to="frameTextarea"
+        onClick={onFrameTextareaClick}
+      >{GeneratedText}</TextField>
     </div>
   );
 };

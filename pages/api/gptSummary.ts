@@ -21,6 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
       { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."}, 
+
+      //Insert ForEach loop to add each Airtable entry as a new single message object
     ],
         model: "gpt-3.5-turbo-16k",
       });

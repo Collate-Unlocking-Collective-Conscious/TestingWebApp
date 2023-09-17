@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import { useCallback , useRef} from "react";
 import { Button, TextField } from "@mui/material";
-import {sendTextInput} from "./components/input";
+import {sendTextInput} from "../hooks/input";
+import DisplayText from "../Components/DisplayText";
 
 //import SendIcon from '@mui/icons-material/Send';
 
@@ -10,7 +11,12 @@ import {sendTextInput} from "./components/input";
 
 //------------------------------------------------------------------------------------------------------------------
 
-var GeneratedText = ''
+interface GenText {
+  Text:string
+}
+
+
+var GeneratedText:GenText = {Text:'Test Text'};
 const myInit = {
   method: "GET",
  
@@ -18,7 +24,7 @@ const myInit = {
 async function GeneratorHandler (res:any) {
   res = await fetch('http://localhost:3000/api/gptSummary', myInit)
 
-  GeneratedText = res.body
+  GeneratedText.Text = res.body
  }
 
 
@@ -66,21 +72,32 @@ const FrameComponent: NextPage = () => {
         onClick={GeneratorHandler} //GET function here
         >Generate Output</Button></section>
       
-      <TextField
-        className=" cursor-pointer m-5"
-        color="primary"
-        variant="outlined"
-        multiline
-        rows={12}
-        label="AI output summary"
-        placeholder="This is a place holder text"
-        margin="none"
-        fullWidth
-        data-scroll-to="frameTextarea"
-        onClick={onFrameTextareaClick}
-      >{GeneratedText}</TextField>
+      <DisplayText>{GeneratedText}</DisplayText>
+      
     </div>
   );
 };
 
 export default FrameComponent;
+
+
+
+
+
+// DEPRECATED TO BE MOVED TO DEPRECATED FOLDER
+
+
+
+// <TextField
+//         className=" cursor-pointer m-5"
+//         color="primary"
+//         variant="outlined"
+//         multiline
+//         rows={12}
+//         label="AI output summary"
+//         placeholder="This is a place holder text"
+//         margin="none"
+//         fullWidth
+//         data-scroll-to="frameTextarea"
+//         onClick={onFrameTextareaClick}
+//       >{GeneratedText}</TextField>

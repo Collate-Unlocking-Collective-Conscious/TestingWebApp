@@ -3,19 +3,19 @@ import next from "next";
 //-------------------------------------------------------------------------------------
 
 
-interface GenText {
-    Text:string
-}
+// interface GenText {
+//     Text:string
+// }
 
 
 
 
-export default function DisplayText (props:GenText) {
+export default function DisplayText (props:any) {
 
     return <section>
 
         <p>
-            {props.Text}
+            {props.text}
         </p>
     </section>
 }

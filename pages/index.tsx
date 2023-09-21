@@ -11,12 +11,12 @@ import DisplayText from "../Components/DisplayText";
 
 //------------------------------------------------------------------------------------------------------------------
 
-interface GenText {
-  Text:string
-}
+// interface GenText {
+//   Text:string
+// }
 
 
-var GeneratedText:GenText = {Text:'Test Text'};
+var GeneratedText = 'Test Text'
 const myInit = {
   method: "GET",
  
@@ -24,7 +24,7 @@ const myInit = {
 async function GeneratorHandler (res:any) {
   res = await fetch('http://localhost:3000/api/gptSummary', myInit)
 
-  GeneratedText.Text = res.body
+  GeneratedText = res.body
  }
 
 
@@ -72,7 +72,7 @@ const FrameComponent: NextPage = () => {
         onClick={GeneratorHandler} //GET function here
         >Generate Output</Button></section>
       
-      <DisplayText>{GeneratedText}</DisplayText>
+      <DisplayText text={GeneratedText}/>
       
     </div>
   );

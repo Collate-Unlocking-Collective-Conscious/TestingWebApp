@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useCallback , useRef} from "react";
 import { Button, TextField } from "@mui/material";
-import {sendTextInput} from "../hooks/input";
+import {getRecentTextEntries, sendTextInput} from "../hooks/input";
 import DisplayText from "../Components/DisplayText";
 
 //import SendIcon from '@mui/icons-material/Send';
@@ -16,12 +16,19 @@ import DisplayText from "../Components/DisplayText";
 // }
 
 
-var GeneratedText = 'Test Text'
+var GeneratedText = '';
 const myInit = {
   method: "GET",
  
 };
 async function GeneratorHandler (res:any) {
+  var entries = getRecentTextEntries(10);
+  console.log(entries);
+  GeneratedText = '';
+  entries.forEach(function(text){
+    GeneratedText += ' ,' + text.toString();
+  });
+  return;
   res = await fetch('http://localhost:3000/api/gptSummary', myInit)
 
   GeneratedText = res.body
@@ -43,7 +50,6 @@ const FrameComponent: NextPage = () => {
     
       if(e.key === 'Enter'){
         inputValue= valueRef.current.value; // to display <p>...</p> below text field
-        console.log(inputValue);
         sendTextInput(inputValue);
       }
   }

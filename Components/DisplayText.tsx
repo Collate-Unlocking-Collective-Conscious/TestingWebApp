@@ -13,7 +13,6 @@ import next from "next";
 export default function DisplayText (props:any) {
 
     return <section>
-
         <p>
             {props.text}
         </p>

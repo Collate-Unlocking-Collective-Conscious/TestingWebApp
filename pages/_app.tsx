@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import "./global.css";
 
+
 export default function MyApp(props: any) {
   const { Component, pageProps } = props;
 

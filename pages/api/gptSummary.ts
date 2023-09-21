@@ -5,7 +5,16 @@ import Airtable from "airtable";
 
 //-------------------------------------------
 
-const openai = new OpenAI();
+
+
+
+const configuration = {
+    organization: "org-Igci1c0Vs3AAiblvses9hFFs",
+    apiKey: process.env.OPENAI_API_KEY,
+};
+
+const openai = new OpenAI(configuration);
+
 
 var OutputSummary = {}
  

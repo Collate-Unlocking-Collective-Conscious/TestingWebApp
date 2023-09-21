@@ -1,7 +1,7 @@
 import React from "react"
 import Airtable from "airtable"
 
-var base = new Airtable({apiKey: 'patbFu1cGoehv5k7B.72c1dd089560234fb6a5aa60eb1da03680756dd4ae27452cabddc027f23f06aa'}).base('appNr8Gh1Gkr6FFNV');
+var base = new Airtable({apiKey: process.env.AIRTABLE_API}).base('appNr8Gh1Gkr6FFNV');
 
 export function sendTextInput(text: string) {
     if(text === 'clear records'){

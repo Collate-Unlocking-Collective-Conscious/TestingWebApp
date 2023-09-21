@@ -18,11 +18,11 @@ const openai = new OpenAI(configuration);
 
 var OutputSummary = {}
  
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
-      //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
+      
 
    //Insert ForEach loop to add each Airtable entry as a new single message object
     
@@ -37,6 +37,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     
       console.log(completion.choices[0]);
+
+
+      return  res.json(completion.choices[0]);
     }
     
     

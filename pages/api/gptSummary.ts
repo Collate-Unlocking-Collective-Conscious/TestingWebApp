@@ -14,7 +14,7 @@ const configuration = {
 };
 
 const openai = new OpenAI(configuration);
-var Thought
+var Thought = [];
 var OutputSummary = {role:"assitant" , content: {Thought}}
 var MessageArray = [{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
 { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
@@ -32,7 +32,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
       
      const completion = await openai.chat.completions.create({
-        messages: MessageArray,
+        messages:[{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
+        { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
+        OutputSummary
+        ],
         model: "gpt-3.5-turbo-16k",
       });
     

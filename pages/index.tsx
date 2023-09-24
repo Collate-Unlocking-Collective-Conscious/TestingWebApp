@@ -16,7 +16,7 @@ import DisplayText from "../Components/DisplayText";
 // }
 
 
-var GeneratedText = '';
+var GeneratedText = 'Test Text';
 const myInit = {
   method: "GET",
  

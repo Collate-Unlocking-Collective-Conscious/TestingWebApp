@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
-import Airtable from "airtable";
+
+import { getRecentTextEntries } from "./airtableRead";
 
 
 //-------------------------------------------
@@ -26,20 +27,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
-      Airtable.
+    MessageArray = getRecentTextEntries(10);
 
 
 
-   //Insert ForEach loop to add each Airtable entry as a new single message object
-    AirTableData.forEach(element => { 
+    MessageObject.content = elemen
 
-      
-
-    MessageObject.content = element
-
-    MessageArray.push(MessageObject)
+    MessageArray.push(MessageObject);
    
-    });
 
 
       Output.concat(MessageArray)

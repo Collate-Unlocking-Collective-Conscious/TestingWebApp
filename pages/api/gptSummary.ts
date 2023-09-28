@@ -6,7 +6,9 @@ import { getRecentTextEntries } from "./airtableRead";
 
 //-------------------------------------------
 
-
+interface GenText {
+  Text:string | null
+}
 
 
 const configuration = {
@@ -23,7 +25,7 @@ var Output = [{ role: "system", content: "You are a SummaryGPT, you summarize th
 { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
 
 ]
-export default async function handler(req: NextApiRequest, res: NextApiResponse) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
+export default async function handler(req: NextApiRequest, res: NextApiResponse<GenText>) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
@@ -48,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log(completion.choices[0]);
 
 
-      return  res.json(completion.choices[0]);
+      return  res.status(200).json({Text: completion.choices[0].message.content});
     }
     
     
@@ -56,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 
 
-  }// else {
+  // else {
     // Handle any other HTTP method
   //}
  

@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextApiRequest, NextPage } from "next";
 import { useCallback , useRef} from "react";
 import { Button, TextField } from "@mui/material";
 import {sendTextInput} from "../hooks/input";
@@ -12,9 +12,9 @@ import { NextApiResponse } from "next";
 
 //------------------------------------------------------------------------------------------------------------------
 
-// interface GenText {
-//   Text:string
-// }
+interface GenText {
+  Text:string
+}
 
 
 var GeneratedText = 'Press the Generate Button to get the Collated Summary!';
@@ -22,9 +22,11 @@ const myInit = {
   method: "GET",
 };
 
-async function GeneratorHandler (res:NextApiResponse) {
+async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>) {
   
-  res = await fetch('http://localhost:3000/api/gptSummary', myInit)
+ await fetch('http://localhost:3000/api/gptSummary', myInit)
+  
+  return console.log( )
 
  }
 

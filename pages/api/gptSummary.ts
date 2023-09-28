@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { getRecentTextEntries } from "./airtableRead";
+import Airtable from "airtable";
 
 
 //-------------------------------------------
@@ -18,14 +19,13 @@ const configuration = {
 
 const openai = new OpenAI(configuration);
 
-var MessageObject = {role:"assistant" , content: ''}
+var MessageObject = {role:"user" , content: ''}
 var MessageArray = []
 var AirTableData = [];
-var Output = [{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
-{ role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
+var Output = { role: "system", content: "Summerize the previous entries in a sentence." };
 
-]
 export default async function handler(req: NextApiRequest, res: NextApiResponse<GenText>) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
+
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
@@ -33,32 +33,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
    //Insert ForEach loop to add each Airtable entry as a new single message object
 
+    if(Airtable.length > 0){
+      console.log(AirTableData);
+
+    }else{
+      console.log("Airtable rate limit reached ... please wait a minute");
+    }
       
    AirTableData.forEach(function(entry){
       MessageObject.content = entry;
       MessageArray.push(MessageObject)
     });
-   }
 
-
-     Output.concat(MessageArray);
+     MessageArray.push(Output);
      const completion = await openai.chat.completions.create({
-        messages : Output,
+        messages : MessageArray,
         model: "gpt-3.5-turbo-16k",
       });
-    
-      console.log(completion.choices[0]);
-
+      console.log(AirTableData);
+      console.log(Output);
+      console.log(completion.choices[0].message.content);
 
       return  res.status(200).json({Text: completion.choices[0].message.content});
-    }
-    
-    
 
+   }else{
+      console.log("Must use GET request");
+   }
 
-
-
-  // else {
-    // Handle any other HTTP method
-  //}
- 
+}

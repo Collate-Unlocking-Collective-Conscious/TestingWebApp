@@ -27,19 +27,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
-    MessageArray = getRecentTextEntries(10);
+    AirTableData = getRecentTextEntries(10);
+
+   //Insert ForEach loop to add each Airtable entry as a new single message object
+
+      
+   AirTableData.forEach(function(entry){
+      MessageObject.content = entry;
+      MessageArray.push(MessageObject)
+    });
+   }
 
 
-
-    MessageObject.content = elemen
-
-    MessageArray.push(MessageObject);
-   
-
-
-      Output.concat(MessageArray)
+     Output.concat(MessageArray);
      const completion = await openai.chat.completions.create({
-        messages:Output,
+        messages : Output,
         model: "gpt-3.5-turbo-16k",
       });
     

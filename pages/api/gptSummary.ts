@@ -14,28 +14,37 @@ const configuration = {
 };
 
 const openai = new OpenAI(configuration);
-var Thought = [];
-var OutputSummary = {role:"assitant" , content: {Thought}}
-var MessageArray = [{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
+
+var MessageObject = {role:"assistant" , content: ''}
+var MessageArray = []
+var AirTableData = [];
+var Output = [{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
 { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
 
 ]
-
- 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
   if (req.method === 'GET') {
     // Process a GET request for GPT summary of AirTable Data
 
-      
+      Airtable.
+
+
 
    //Insert ForEach loop to add each Airtable entry as a new single message object
-    
+    AirTableData.forEach(element => { 
+
       
+
+    MessageObject.content = element
+
+    MessageArray.push(MessageObject)
+   
+    });
+
+
+      Output.concat(MessageArray)
      const completion = await openai.chat.completions.create({
-        messages:[{ role: "system", content: "You are a SummaryGPT, you summarize the overall emotions and details of a conversation." },
-        { role: "assistant", content: "The following are a collection of thoughts about collective consciousness."},
-        OutputSummary
-        ],
+        messages:Output,
         model: "gpt-3.5-turbo-16k",
       });
     

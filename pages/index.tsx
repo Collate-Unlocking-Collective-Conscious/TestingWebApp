@@ -17,7 +17,7 @@ import { NextApiResponse } from "next";
 // }
 
 
-var GeneratedText = 'Test Text';
+var GeneratedText = 'Press the Generate Button to get the Collated Summary!';
 const myInit = {
   method: "GET",
  

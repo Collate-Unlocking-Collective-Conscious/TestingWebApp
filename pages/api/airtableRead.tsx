@@ -2,10 +2,10 @@ import Airtable from "airtable"
 
 var tableRead = new Airtable({apiKey: process.env.AIRTABLE_READ_TOKEN}).base('appNr8Gh1Gkr6FFNV');
 
-export function getRecentTextEntries(count: number){
+export async function getRecentTextEntries(count: number) {
 
-  var entries : string[] = [];
-    tableRead('Tasks').select({
+  var entries = [];
+    await tableRead('Tasks').select({
       maxRecords:  count,
       view: "Input Grid",
       offset:0,
@@ -17,18 +17,14 @@ export function getRecentTextEntries(count: number){
           var currentText = record.get('Name')?.toString();
           if(currentText != undefined){
             entries.push(currentText);
+            console.log(currentText);
           } else {
             console.log("Error: airtable entry is returned as undefined");
           }
-          //var currentTime = record.get('Time');
-          //console.log(currentText, currentTime);
       });
   
       fetchNextPage();
   
-  }, function done(err) {
-      if (err) { console.error(err); return; }
-  });
-
+  }).catch(error => {console.log("Airtable read error.");});
   return entries;
 }

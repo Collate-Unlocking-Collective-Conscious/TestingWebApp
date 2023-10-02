@@ -19,45 +19,52 @@ const configuration = {
 
 const openai = new OpenAI(configuration);
 
-var MessageObject = {role:"user" , content: ''}
-var MessageArray = []
-var AirTableData = [];
-var Output = { role: "system", content: "Summerize the previous entries in a sentence." };
+interface GPTMessage{
+  role: string;
+  content: string;
+};
+
+
+//var Output = { role: "system", content: "Without getting too in depth, summerize the preceding entries." };
+
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<GenText>) { //Airtable request to an array of strings, then arrange strings into individual message objects, then summarize
 
-  if (req.method === 'GET') {
-    // Process a GET request for GPT summary of AirTable Data
+  if (req.method != 'GET') { // if we use anything besides GET we should split this into many functinos.
+      const message = "API request must be a GET request!";
+      console.log(message);;
+      return res.status(200).json({Text: message});
+  }
 
-    AirTableData = getRecentTextEntries(10);
+  var AirtableData  = await getRecentTextEntries(10);
 
-   //Insert ForEach loop to add each Airtable entry as a new single message object
+  console.log("Done");
+  console.log(AirtableData);
 
-    if(Airtable.length > 0){
-      console.log(AirTableData);
 
-    }else{
-      console.log("Airtable rate limit reached ... please wait a minute");
-    }
-      
-   AirTableData.forEach(function(entry){
-      MessageObject.content = entry;
-      MessageArray.push(MessageObject)
-    });
+  if(AirtableData.length === 0){
+      const message = "Cannot get entries from database";
+      console.log(message);
+      return res.status(200).json({Text: message});
+  }
 
-     MessageArray.push(Output);
-     const completion = await openai.chat.completions.create({
-        messages : MessageArray,
-        model: "gpt-3.5-turbo-16k",
-      });
-      console.log(AirTableData);
-      console.log(Output);
-      console.log(completion.choices[0].message.content);
+  // initial message to give context.
+  var MessageArray = [];
+  AirtableData.forEach(function(entry){
+    MessageArray.push({"role": "user", "content": entry});
+  });
+  MessageArray.push({"role": "system", "content": "Summerize the ideas in a sentence or less."});
 
-      return  res.status(200).json({Text: completion.choices[0].message.content});
+  console.log(MessageArray);
 
-   }else{
-      console.log("Must use GET request");
-   }
+  var completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-16k",
+    messages : MessageArray,
+    temperature: 0,
+  });
+  console.log(completion);
+  console.log(completion.choices[0].message.content);
 
+  return  res.status(200).json({Text: completion.choices[0].message.content});
 }

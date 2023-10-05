@@ -25,13 +25,13 @@ const myInit = {
 
 async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>) {
   
- await fetch('https://${CF_PAGES_URL}collate.pages.dev/api/gptSummary' , myInit)
+ await fetch(`https://${process.env.CF_PAGES_URL}collate.pages.dev/api/gptSummary` , myInit)
   
   return console.log( )
 
  }
 
-console.log(process.env.AIRTABLE_READ_TOKEN)
+// console.log(process.env.AIRTABLE_READ_TOKEN)
 
 
 const FrameComponent: NextPage = () => {

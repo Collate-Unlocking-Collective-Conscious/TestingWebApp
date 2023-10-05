@@ -5,8 +5,8 @@
       ignoreBuildErrors: true,
     },
     env: {
-      AIRTABLE_READ_TOKEN: AIRTABLE_READ_TOKEN,
-      AIRTABLE_WRITE_TOKEN: AIRTABLE_WRITE_TOKEN,
+      AIRTABLE_READ_TOKEN: process.env.AIRTABLE_READ_TOKEN,
+      AIRTABLE_WRITE_TOKEN: process.env.AIRTABLE_WRITE_TOKEN,
     },
   };
 

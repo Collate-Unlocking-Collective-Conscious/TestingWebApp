@@ -1,6 +1,8 @@
 import Airtable from "airtable"
 
-var tableRead = new Airtable({apiKey: AIRTABLE_READ_TOKEN}).base('appNr8Gh1Gkr6FFNV');
+export const runtime = 'edge';
+
+var tableRead = new Airtable({apiKey: process.env.AIRTABLE_READ_TOKEN}).base('appNr8Gh1Gkr6FFNV');
 
 export async function getRecentTextEntries(count: number) {
 

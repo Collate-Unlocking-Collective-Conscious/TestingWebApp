@@ -11,10 +11,13 @@ interface GenText {
   Text:string | null
 }
 
+export const config = {
+	runtime: 'edge',
+};
 
 const configuration = {
     organization: "org-Igci1c0Vs3AAiblvses9hFFs",
-    apiKey: OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
 };
 
 const openai = new OpenAI(configuration);

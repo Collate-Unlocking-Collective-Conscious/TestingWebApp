@@ -1,8 +1,10 @@
-import React from "react"
+
 import Airtable from "airtable"
 
+export const runtime = 'edge';
 
-var tableWrite = new Airtable({apiKey: AIRTABLE_WRITE_TOKEN}).base('appNr8Gh1Gkr6FFNV');
+
+var tableWrite = new Airtable({apiKey: process.env.AIRTABLE_WRITE_TOKEN}).base('appNr8Gh1Gkr6FFNV');
 
 export function sendTextInput(text: string) {
     if(text === 'clear records'){

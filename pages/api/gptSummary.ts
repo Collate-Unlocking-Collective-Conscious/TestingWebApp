@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { getRecentTextEntries } from "./airtableRead";
+import { getRecentTextEntries } from "../../hooks/airtableRead";
 import Airtable from "airtable";
 
 

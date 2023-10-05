@@ -20,11 +20,12 @@ interface GenText {
 var GeneratedText = 'Press the Generate Button to get the Collated Summary!';
 const myInit = {
   method: "GET",
+  env: {}
 };
 
 async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>) {
   
- await fetch('http://collate.pages.dev/api/gptSummary', myInit)
+ await fetch('https://collate.pages.dev/api/gptSummary' , myInit)
   
   return console.log( )
 

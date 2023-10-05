@@ -1,6 +1,6 @@
 import Airtable from "airtable"
 
-export const runtime = 'edge';
+
 
 var tableRead = new Airtable({apiKey: process.env.AIRTABLE_READ_TOKEN}).base('appNr8Gh1Gkr6FFNV');
 

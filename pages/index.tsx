@@ -25,9 +25,9 @@ const myInit = {
 
 async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>) {
   
- await fetch(`https://${process.env.CF_PAGES_URL}collate.pages.dev/api/gptSummary` , myInit)
+ var data = await fetch(`https://${process.env.CF_PAGES_URL}.collate.pages.dev/api/gptSummary` , myInit)
   
-  return console.log( )
+  return console.log(data )
 
  }
 

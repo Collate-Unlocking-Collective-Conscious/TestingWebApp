@@ -19,10 +19,10 @@ const configuration = {
 
 const openai = new OpenAI(configuration);
 
-interface GPTMessage{
-  role: string;
-  content: string;
-};
+// interface GPTMessage{
+//   role: string;
+//   content: string;
+// };
 
 
 //var Output = { role: "system", content: "Without getting too in depth, summerize the preceding entries." };

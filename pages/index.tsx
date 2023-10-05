@@ -33,6 +33,7 @@ async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>
 
 
 
+
 const FrameComponent: NextPage = () => {
   const onFrameTextareaClick = useCallback(() => {
     const anchor = document.querySelector("[data-scroll-to='frameTextarea']");

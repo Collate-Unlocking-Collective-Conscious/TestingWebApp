@@ -11,13 +11,13 @@ interface GenText {
   Text:string | null
 }
 
-export const config = {
-	runtime: 'edge',
-  unstable_allowDynamic: [
-    './node_modules/airtable/lib/airtable.umd.js', // allows a single file
-    // use a glob to allow anything in the function-bind 3rd party module
-  ],
-};
+// export const config = {
+// 	runtime: 'edge',
+//   unstable_allowDynamic: [
+//     './node_modules/airtable/lib/airtable.umd.js', // allows a single file
+//     // use a glob to allow anything in the function-bind 3rd party module
+//   ],
+// };
 
 const configuration = {
     organization: "org-Igci1c0Vs3AAiblvses9hFFs",

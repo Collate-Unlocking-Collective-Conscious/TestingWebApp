@@ -11,6 +11,8 @@ interface GenText {
   Text:string | null
 }
 
+
+export const runtime = 'edge';
 // export const config = {
 // 	runtime: 'edge',
 //   unstable_allowDynamic: [
@@ -58,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   // initial message to give context.
   var MessageArray = [];
-  AirtableData.forEach(function(entry){
+  AirtableData.forEach((entry:string) => {
     MessageArray.push({"role": "user", "content": entry});
   });
   MessageArray.push({"role": "system", "content": "Summerize the ideas in a sentence or less."});
@@ -68,7 +70,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   var completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo-16k",
     messages : MessageArray,
-    temperature: 0,
+    temperature: 0.4,
   });
   console.log(completion);
   console.log(completion.choices[0].message.content);

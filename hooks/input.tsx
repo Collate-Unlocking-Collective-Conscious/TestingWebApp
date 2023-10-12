@@ -19,7 +19,8 @@ export function sendTextInput(text: string) {
           });
 
     }
-    console.log("Input", text);
+
+    console.log("Input Test", text);
     tableWrite('Tasks').create([
         {
           "fields": {

@@ -20,7 +20,7 @@ export function sendTextInput(text: string) {
 
     }
 
-    console.log("Input: ", text);
+    console.log("Logging Input: ", text);
     tableWrite('Tasks').create([
         {
           "fields": {

@@ -1,8 +1,8 @@
 import OpenAI from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { getRecentTextEntries } from "../../hooks/airtableRead";
-import Airtable from "airtable";
+// import { getRecentTextEntries } from "../../hooks/airtableRead";
+
 
 
 //-------------------------------------------
@@ -25,10 +25,7 @@ interface GenText {
 
 export const config = {
 	runtime: 'edge',
-  unstable_allowDynamic: [
-    './node_modules/airtable/lib/airtable.umd.js', // allows a single file
-    './hooks/airtableRead.tsx'
-  ],
+  
 };
 
 const configuration = {
@@ -56,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return res.status(200).json({Text: message});
   }
 
-  var AirtableData  = await getRecentTextEntries(10);
+  var AirtableData  = 'THIS MEANS YOUR API IS WORKING ON THE LIVE SITE' //await getRecentTextEntries(10);
 
   console.log("Done");
   console.log(AirtableData);

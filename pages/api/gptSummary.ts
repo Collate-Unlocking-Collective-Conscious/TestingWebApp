@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-// import { getRecentTextEntries } from "../../hooks/airtableRead";
+ import { getRecentTextEntries } from "../../hooks/airtableRead";
 
 
 
@@ -53,8 +53,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return res.status(200).json({Text: message});
   }
 
-  var AirtableData  = ['THIS MEANS YOUR API IS WORKING ON THE LIVE SITE'] //await getRecentTextEntries(10);
-
+  var AirtableData  = await getRecentTextEntries(10);
+// ['THIS MEANS YOUR API IS WORKING ON THE LIVE SITE'] //
   console.log("Done");
   console.log(AirtableData);
 

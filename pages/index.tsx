@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextPage } from "next";
 import { useCallback , useRef} from "react";
 import { Button, TextField } from "@mui/material";
-// import {sendTextInput} from "../hooks/input";
+ import {sendTextInput} from "../hooks/input";
 import DisplayText from "../Components/DisplayText";
 import { NextApiResponse } from "next";
 
@@ -43,14 +43,14 @@ const FrameComponent: NextPage = () => {
   }, []);
 
   const valueRef = useRef('');
-  // let inputValue: string = "GAlle";
-  // const sendValue = (e : React.KeyboardEvent<HTMLDivElement>) => {
+  let inputValue: string = "GAlle";
+  const sendValue = (e : React.KeyboardEvent<HTMLDivElement>) => {
     
-  //     if(e.key === 'Enter'){
-  //       inputValue= valueRef.current.value; // to display <p>...</p> below text field
-  //       sendTextInput(inputValue);
-  //     }
-  // }
+      if(e.key === 'Enter'){
+        inputValue= valueRef.current.value; // to display <p>...</p> below text field
+        sendTextInput(inputValue);
+      }
+  }
 
   return (
     <div className="relative bg-khaki w-full overflow-hidden text-left text-[64px] text-black font-inter lg:w-full lg:h-full p-10">
@@ -68,7 +68,7 @@ const FrameComponent: NextPage = () => {
         size="medium"
         margin="none"
         inputRef={valueRef}
-        //onKeyUp={sendValue}
+        onKeyUp={sendValue}
       />
       <section><Button variant="contained" //endIcon={<SendIcon />}
       fullWidth

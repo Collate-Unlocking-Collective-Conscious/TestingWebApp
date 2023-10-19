@@ -23,10 +23,10 @@ interface GenText {
 //   return response
 // }
 
-export const config = {
-	runtime: 'edge',
+// export const config = {
+// 	runtime: 'edge',
   
-};
+// };
 
 const configuration = {
     organization: "org-Igci1c0Vs3AAiblvses9hFFs",

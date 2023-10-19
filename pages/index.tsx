@@ -25,7 +25,7 @@ const myInit = {
 
 async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>) {
   
- var data = await fetch(`https://collate.community/api/gptSummary` , myInit)
+ var data = await fetch(`/api/gptSummary` , myInit)
   
   return console.log(data )
 

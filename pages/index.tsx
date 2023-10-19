@@ -42,7 +42,7 @@ const FrameComponent: NextPage = () => {
     }
   }, []);
 
-  // const valueRef = useRef('');
+  const valueRef = useRef('');
   // let inputValue: string = "GAlle";
   // const sendValue = (e : React.KeyboardEvent<HTMLDivElement>) => {
     
@@ -68,7 +68,7 @@ const FrameComponent: NextPage = () => {
         size="medium"
         margin="none"
         inputRef={valueRef}
-        onKeyUp={sendValue}
+        //onKeyUp={sendValue}
       />
       <section><Button variant="contained" //endIcon={<SendIcon />}
       fullWidth

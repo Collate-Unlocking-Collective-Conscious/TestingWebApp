@@ -22,7 +22,7 @@ interface GenText {
 //   response.headers.set('x-square', answer.toString())
 //   return response
 // }
-
+export const runtime = 'edge'
 // export const config = {
 // 	runtime: 'edge',
   

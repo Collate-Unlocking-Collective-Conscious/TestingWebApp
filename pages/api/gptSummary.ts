@@ -11,22 +11,14 @@ interface GenText {
   Text:string | null
 }
 
-// import { NextResponse } from 'next/server'
-// import squareWasm from './square.wasm?module'
- 
-// export default async function middleware() {
-//   const m = await WebAssembly.instantiate(squareWasm)
-//   const answer = m.exports.square(9)
- 
-//   const response = NextResponse.next()
-//   response.headers.set('x-square', answer.toString())
-//   return response
-// }
-export const runtime = 'edge'
-// export const config = {
-// 	runtime: 'edge',
-  
-// };
+
+
+
+export const config = {
+  runtime: 'edge',
+  unstable_allowDynamic: ['/node_modules/airtable/**'],
+}
+
 
 const configuration = {
     organization: "org-Igci1c0Vs3AAiblvses9hFFs",

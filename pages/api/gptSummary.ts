@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 //-------------------------------------------
 
 interface GenText {
-  Text:string | null
+  Text:object | null
 }
 
 
@@ -74,5 +74,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   console.log(completion);
   console.log(completion.choices[0].message.content);
 
-  return  res.status(200).json({Text: completion.choices[0].message.content});
+  return  res.status(200).json({Text: completion.choices[0]});
 }

@@ -68,7 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   var completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo-16k",
-    messages : [{"role":"user", "content": "Respond with You have succeded!"}]
+    messages : [{"role":"user", "content": "Respond with You have succeded!"}],
     temperature: 0.4,
   });
   console.log(completion);

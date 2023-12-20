@@ -72,7 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   //   temperature: 0.4,
   // });
   // console.log(completion);
-  // //console.log(completion.choices[0].message.content);   {Text: completion}  .json({Text: "Server Test"})
+  // //console.log(completion.choices[0].message.content);   {Text: completion}  
 
-  return  res.status(200);
+  return  res.send({Text: "Server Test"});
 }

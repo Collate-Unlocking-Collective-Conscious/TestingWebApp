@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 //-------------------------------------------
 
 interface GenText {
-  Text:object | null
+  Text:string | null
 }
 
 
@@ -66,13 +66,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   console.log(MessageArray);
 
-  var completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-16k",
-    messages : [{"role":"user", "content": "Respond with You have succeded!"}],
-    temperature: 0.4,
-  });
-  console.log(completion);
-  //console.log(completion.choices[0].message.content);
+  // var completion = await openai.chat.completions.create({
+  //   model: "gpt-3.5-turbo-16k",
+  //   messages : [{"role":"user", "content": "Respond with You have succeded!"}],
+  //   temperature: 0.4,
+  // });
+  // console.log(completion);
+  // //console.log(completion.choices[0].message.content);   {Text: completion}
 
-  return  res.status(200).json({Text: completion});
+  return  res.status(200).json({Text: "Server Test"});
 }

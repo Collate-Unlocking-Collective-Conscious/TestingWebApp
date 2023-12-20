@@ -14,10 +14,10 @@ interface GenText {
 
 
 
-export const config = {
-  runtime: 'edge',
-  unstable_allowDynamic: ['/node_modules/airtable/**'],
-}
+// export const config = {
+//   runtime: 'edge',
+//   unstable_allowDynamic: ['/node_modules/airtable/**'],
+// }
 
 
 const configuration = {

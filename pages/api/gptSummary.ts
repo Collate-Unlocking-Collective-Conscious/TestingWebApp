@@ -74,5 +74,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   // console.log(completion);
   // //console.log(completion.choices[0].message.content);   {Text: completion}  
 
-  return  res.send({Text: "Server Test"});
+  return  res.status(200).json({Text: "Server Test"});
 }

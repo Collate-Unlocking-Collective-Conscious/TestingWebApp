@@ -29,7 +29,7 @@ async function GeneratorHandler (req:NextApiRequest,res:NextApiResponse<GenText>
   
    console.log(data)  //.body.message.content
 
-   return GeneratedText = data.body.Text
+   return GeneratedText = data.body
 
  }
 
@@ -49,7 +49,7 @@ const FrameComponent: NextPage = () => {
   const sendValue = (e : React.KeyboardEvent<HTMLDivElement>) => {
     
       if(e.key === 'Enter'){
-        inputValue= valueRef.current.value; // to display <p>...</p> below text field
+        inputValue= valueRef.current.valueOf(); // to display <p>...</p> below text field
         sendTextInput(inputValue);
       }
   }

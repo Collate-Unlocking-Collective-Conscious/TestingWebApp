@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   var AirtableData  = await getRecentTextEntries(10);
-// ['THIS MEANS YOUR API IS WORKING ON THE LIVE SITE'] //
+
   console.log("Done");
   console.log(AirtableData);
 
@@ -66,13 +66,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   console.log(MessageArray);
 
-  // var completion = await openai.chat.completions.create({
-  //   model: "gpt-3.5-turbo-16k",
-  //   messages : [{"role":"user", "content": "Respond with You have succeded!"}],
-  //   temperature: 0.4,
-  // });
-  // console.log(completion);
-  // //console.log(completion.choices[0].message.content);   {Text: completion}  
+  var completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-16k",
+    messages : [{"role":"user", "content": "Respond with You have succeded!"}],
+    temperature: 0.4,
+  });
+  console.log(completion);
+  //console.log(completion.choices[0].message.content);     
 
-  return  res.status(200).json({Text: "Server Test"});
+  return  res.status(200).json({Text: JSON.stringify(completion)});
 }

@@ -21,7 +21,7 @@ interface GenText {
 
 
 const configuration = {
-    organization: "org-Igci1c0Vs3AAiblvses9hFFs",
+    organization: "org-S6CbimatthdoTL05usIcPsux",
     apiKey: process.env.OPENAI_API_KEY,
 };
 
